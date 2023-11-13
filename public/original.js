@@ -90,6 +90,16 @@ var btn_skill2= document.getElementById("dev_func");
 var btn_skill3= document.getElementById("tools_func");
 
 
+let skills_width;
+let skills_w;
+const calc_width=()=>{
+     skills_w=document.querySelector('.skills_section');
+    skills_width=skills_w.offsetWidth;
+    // console.log("width is :"+skills_width.offsetWidth);
+    return skills_width;
+}
+
+
 
 
 // classes of 3 skills
@@ -99,8 +109,18 @@ var elem2=document.querySelector(".web_developement");
 var elem3=document.querySelector(".dev_tool");
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Code to execute after the DOM content has been loaded
 
- 
+    // Access the width of the body
+    var bodyWidth = document.body.clientWidth;
+    console.log('Body width on DOMContentLoaded:', bodyWidth);
+    if(bodyWidth<1100){
+        elem1.style.display="block";
+    }
+});
+
+
 
 
 btn_skill1.addEventListener('click', ()=>{
@@ -122,7 +142,13 @@ btn_skill1.addEventListener('click', ()=>{
     btn_skill3.style.boxShadow="none"
 
     elem1.style.display="block";
-    elem1.style.display="grid";
+
+    skills_width=calc_width();
+    if(skills_width>1100){
+        elem1.style.display="grid";
+    }else{
+        elem1.style.display="block";
+    }
 
     elem2.style.display="none";
     elem3.style.display="none";
@@ -150,7 +176,13 @@ btn_skill2.addEventListener('click', ()=>{
     btn_skill3.style.boxShadow="none"
 
 elem2.style.display="block";
-elem2.style.display="grid";
+skills_width=calc_width();
+if(skills_width>1100){
+    elem2.style.display="grid";
+}else{
+    console.log("skills width is :"+skills_width);
+    elem2.style.display="block";
+}
 
     elem1.style.display="none";
     elem3.style.display="none";
@@ -182,11 +214,15 @@ btn_skill3.addEventListener('click', ()=>{
     elem1.classList.remove("skills_main");
     elem2.classList.remove("skills_main");
 
+    skills_width=calc_width();
+
     elem3.style.display="block";
-    elem3.style.display="grid";
+    if(skills_width>1100){
+        elem3.style.display="grid";
+    }else{
+        elem3.style.display="block";
+    }
 
     elem1.style.display="none";
     elem2.style.display="none";
 })
-
-
